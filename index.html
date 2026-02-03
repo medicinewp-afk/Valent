@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For You 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ffd6e8, #fff1f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .container {
+    background: #fff;
+    padding: 26px 22px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    width: 330px;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    color: #ff4d6d;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 22px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  button {
+    border: none;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  #no {
+    background: #eee;
+    color: #333;
+    position: relative;
+  }
+
+  button:hover {
+    transform: scale(1.05);
+  }
+
+  /* Card */
+  .card {
+    display: none;
+    animation: pop 0.5s ease forwards;
+  }
+
+  .photo {
+    width: 100%;
+    border-radius: 18px;
+    margin: 14px 0;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  }
+
+  .line {
+    font-size: 0.95rem;
+    margin: 10px 0;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: reveal 0.5s ease forwards;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+  <h1>Hey you 💕</h1>
+  <p>One small question for you…</p>
+
+  <div class="buttons">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 🙃</button>
+  </div>
+</div>
+
+<div class="container card" id="card">
+  <h1>Okay listen 😌</h1>
+
+  <img src="photo.jpg" alt="Us" class="photo"/>
+
+  <div id="text"></div>
+</div>
+
+<script>
+  const yesBtn = document.getElementById("yes");
+  const noBtn = document.getElementById("no");
+  const main = document.getElementById("main");
+  const card = document.getElementById("card");
+  const textBox = document.getElementById("text");
+
+  const lines = [
+    "Vaaah 😌",
+    "Tu updates nathi mokalto lately…",
+    "but mari to haa j ch ❤️",
+    "tare jovanu j ch.",
+    "Madvu ch? 👀✨"
+  ];
+
+  yesBtn.onclick = () => {
+    main.style.display = "none";
+    card.style.display = "block";
+
+    lines.forEach((line, index) => {
+      const p = document.createElement("div");
+      p.className = "line";
+      p.style.animationDelay = `${index * 0.6}s`;
+      p.textContent = line;
+      textBox.appendChild(p);
+    });
+  };
+
+  noBtn.onmouseover = () => {
+    const x = Math.random() * 180 - 90;
+    const y = Math.random() * 180 - 90;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  };
+</script>
+
+</body>
+</html>
